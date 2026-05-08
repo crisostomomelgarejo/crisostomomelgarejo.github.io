@@ -47,7 +47,9 @@ function applyTranslations(lang) {
             el.innerHTML = translations[lang][key];
         }
     });
-    langToggleBtn.textContent = lang === 'es' ? '🇺🇸' : '🇻🇪';
+    const usFlag = '<img src="https://flagcdn.com/w40/us.png" alt="English" width="24" height="16" style="border-radius: 2px;">';
+    const veFlag = '<img src="https://flagcdn.com/w40/ve.png" alt="Español" width="24" height="16" style="border-radius: 2px;">';
+    langToggleBtn.innerHTML = lang === 'es' ? usFlag : veFlag;
     htmlElement.lang = lang;
     renderProjects(); // Re-render projects in the new language
 }
