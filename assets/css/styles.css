@@ -134,18 +134,31 @@ a:hover {
     width: 100%;
 }
 
-.theme-toggle {
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.theme-toggle, .lang-toggle {
     background: none;
     border: none;
     color: var(--text-primary);
     font-size: 1.2rem;
     cursor: pointer;
     transition: var(--transition);
+    font-family: var(--font-heading);
+    font-weight: 700;
 }
 
 .theme-toggle:hover {
     color: var(--accent-color);
     transform: rotate(15deg);
+}
+
+.lang-toggle:hover {
+    color: var(--accent-color);
+    transform: scale(1.1);
 }
 
 /* Botones */

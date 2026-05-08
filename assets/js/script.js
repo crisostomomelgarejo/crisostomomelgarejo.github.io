@@ -1,7 +1,11 @@
-// Theme Toggle Functionality
+// Theme and Language Toggle Functionality
 const themeToggleBtn = document.getElementById('theme-toggle');
+const langToggleBtn = document.getElementById('lang-toggle');
 const htmlElement = document.documentElement;
 const themeIcon = themeToggleBtn.querySelector('i');
+
+// Current Language State
+let currentLang = localStorage.getItem('lang') || 'es';
 
 // Check for saved theme preference or use system preference
 const savedTheme = localStorage.getItem('theme');
@@ -35,6 +39,28 @@ function updateIcon(theme) {
     }
 }
 
+// Language Functionality
+function applyTranslations(lang) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+            el.innerHTML = translations[lang][key];
+        }
+    });
+    langToggleBtn.textContent = lang === 'es' ? 'EN' : 'ES';
+    htmlElement.lang = lang;
+    renderProjects(); // Re-render projects in the new language
+}
+
+langToggleBtn.addEventListener('click', () => {
+    currentLang = currentLang === 'es' ? 'en' : 'es';
+    localStorage.setItem('lang', currentLang);
+    applyTranslations(currentLang);
+});
+
+// Initial translation apply
+applyTranslations(currentLang);
+
 // Optional: Smooth reveal animations on scroll
 const observerOptions = {
     root: null,
@@ -64,14 +90,18 @@ sections.forEach(section => {
 // Render Projects Dynamically
 const projectsGrid = document.getElementById('projects-grid');
 
-if (projectsGrid && typeof projects !== 'undefined') {
-    projects.forEach(project => {
-        // Create project card element
+function renderProjects() {
+    if (!projectsGrid || typeof projectsData === 'undefined') return;
+    
+    projectsGrid.innerHTML = ''; // Clear existing projects
+
+    projectsData.forEach(project => {
         const card = document.createElement('article');
         card.className = 'project-card';
         
-        // Build tech stack list
         const techList = project.techStack.map(tech => `<li>${tech}</li>`).join('');
+        const title = project.title[currentLang];
+        const desc = project.description[currentLang];
         
         card.innerHTML = `
             <div class="project-content">
@@ -82,8 +112,8 @@ if (projectsGrid && typeof projects !== 'undefined') {
                         ${project.liveUrl && project.liveUrl !== '#' ? `<a href="${project.liveUrl}" target="_blank" aria-label="Live Demo" style="margin-left: 10px;"><i class="fas fa-external-link-alt"></i></a>` : ''}
                     </div>
                 </div>
-                <h3 class="project-title">${project.title}</h3>
-                <p class="project-desc">${project.description}</p>
+                <h3 class="project-title">${title}</h3>
+                <p class="project-desc">${desc}</p>
                 <ul class="project-tech">
                     ${techList}
                 </ul>
