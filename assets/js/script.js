@@ -47,7 +47,7 @@ function applyTranslations(lang) {
             el.innerHTML = translations[lang][key];
         }
     });
-    langToggleBtn.textContent = lang === 'es' ? 'EN' : 'ES';
+    langToggleBtn.textContent = lang === 'es' ? '🇺🇸' : '🇻🇪';
     htmlElement.lang = lang;
     renderProjects(); // Re-render projects in the new language
 }
