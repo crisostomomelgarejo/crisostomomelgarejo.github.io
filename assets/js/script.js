@@ -76,7 +76,7 @@ if (projectsGrid && typeof projects !== 'undefined') {
         card.innerHTML = `
             <div class="project-content">
                 <div class="project-header">
-                    <i class="far ${project.icon} folder-icon" style="font-size: 2rem;"></i>
+                    <i class="fas ${project.icon} folder-icon" style="font-size: 2rem;"></i>
                     <div class="project-links">
                         <a href="${project.githubUrl}" target="_blank" aria-label="GitHub Link"><i class="fab fa-github"></i></a>
                         ${project.liveUrl && project.liveUrl !== '#' ? `<a href="${project.liveUrl}" target="_blank" aria-label="Live Demo" style="margin-left: 10px;"><i class="fas fa-external-link-alt"></i></a>` : ''}
