@@ -5,7 +5,7 @@ const projects = [
         description: "Una aplicación web interactiva construida con Streamlit que analiza anuncios de venta de vehículos, incluyendo gráficos de dispersión y análisis exploratorio de datos.",
         techStack: ["Python", "Streamlit", "Plotly", "Pandas"],
         githubUrl: "https://github.com/crisostomomelgarejo/streamlit_car_analysis_dashboard",
-        liveUrl: "", 
+        liveUrl: "https://proyect-sprint7-qqmd.onrender.com", 
         icon: "fa-chart-bar"
     },
     {
